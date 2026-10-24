@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-Gvjpfdh4BH1grEG38N24JC03CjQWWZi1BTitx6ttngg='; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<title>Retour vers Mon carnet</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { margin: 0; padding: 2rem 1rem; font: 18px/1.5 system-ui, -apple-system, sans-serif; background: #F5F7FB; color: #142033; }
+  @media (prefers-color-scheme: dark) { body { background: #0E1420; color: #EAF0F8; } }
+  main { max-width: 34rem; margin: 0 auto; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Retour vers votre carnet…</h1>
+  <p>Si rien ne se passe, vérifiez que le lien privé de votre appareil est actif, puis recommencez la connexion du tensiomètre Withings depuis le carnet.</p>
+  <p lang="en-CA">Returning to your health record… If nothing happens, check that your device's private link is on, then start the Withings blood pressure monitor connection again from the app.</p>
+</main>
+<script>
+// Page relais (décision D17) : Withings ne peut pas joindre une adresse de retour privée (« Host Unreachable »). Il revient ici, et cette
+// page renvoie aussitôt le navigateur vers le carnet, sur le réseau privé, avec le même code et le
+// même « state ». Rien n'est stocké ni envoyé ailleurs ; la destination est fixe.
+var p = new URLSearchParams(location.search), q = new URLSearchParams();
+["code", "state", "error", "error_description"].forEach(function (k) { if (p.has(k)) q.set(k, p.get(k)); });
+location.replace("https://desktop-tqn1n9u.tail195d20.ts.net/withings/callback?" + q.toString());
+</script>
+</body>
+</html>
